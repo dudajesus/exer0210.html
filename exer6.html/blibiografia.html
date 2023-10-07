@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f7d9aa, #e8a372);  /* Gradiente de cores claras suaves */
+            background-size: 400% 400%;
+            animation: gradient 15s infinite;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .mensagem {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Fundo branco transparente */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 20px;
+            color: #333; /* Cor do texto */
+        }
+    </style>
+</head>
+<body>
+    <form onsubmit="formatarNome(event)">
+        <label for="inputNome">digite o nome completo:</label>
+        <input type="text" id="inputNome" required><br><br>
+
+        <button type="submit">formatar nome</button>
+    </form>
+
+    <div id="resultado" class="mensagem"></div>
+
+    <script>
+        function formatarNome(event) {
+            event.preventDefault();
+
+            var inputNome = document.getElementById("inputNome").value;
+
+            var partesNome = inputNome.split(' ');
+            var sobrenome = partesNome[partesNome.length - 1].toUpperCase();
+            var primeiroNome = partesNome.slice(0, partesNome.length - 1).join(' ');
+
+            // Pegar a primeira letra de cada parte do nome
+            var iniciais = partesNome.map(function(part) {
+                return part.charAt(0).toUpperCase();
+            }).join('. ');
+
+            var nomeFormatado = sobrenome + ", " + primeiroNome + " " + iniciais + ".";
+
+            var resultadoDiv = document.getElementById("resultado");
+            resultadoDiv.innerText = "nome de referência bibliográfica: " + nomeFormatado;
+        }
+    </script>
+</body>
+</html>

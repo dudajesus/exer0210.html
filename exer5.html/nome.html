@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #f3f3da;  /* Fundo bege clarinho */
+        }
+
+        .mensagem {
+            padding: 20px;
+            background-color: rgba(236, 236, 185, 0.863);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form onsubmit="formatarNome(event)">
+        <label for="inputNome">digite seu nome completo:</label>
+        <input type="text" id="inputNome" required><br><br>
+
+        <button type="submit">formatar nome</button>
+    </form>
+
+    <div id="resultado" class="mensagem"></div>
+
+    <script>
+        function formatarNome(event) {
+            event.preventDefault();
+
+            var inputNome = document.getElementById("inputNome").value;
+
+            var partesNome = inputNome.split(' ');
+            var sobrenome = partesNome[partesNome.length - 1];
+            var primeiroNome = partesNome.slice(0, partesNome.length - 1).join(' ');
+
+            var nomeFormatado = sobrenome + ", " + primeiroNome;
+
+            var resultadoDiv = document.getElementById("resultado");
+            resultadoDiv.innerText = "nome no formato catálogo telefônico: " + nomeFormatado;
+        }
+    </script>
+</body>
+</html>

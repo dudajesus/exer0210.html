@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #fde7e7;  /* Fundo rosinha claro */
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: rgb(206, 49, 159);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <form onsubmit="gerarString(event)">
+        <label for="caractere">digite um caractere:</label>
+        <input type="text" id="caractere" maxlength="1" required><br><br>
+
+        <label for="quantidade">digite um número inteiro:</label>
+        <input type="number" id="quantidade" required><br><br>
+
+        <button type="submit">gerar string</button>
+    </form>
+
+    <h2>string gerada:</h2>
+    <table id="tabelaString">
+        <tr>
+            <th>caracter</th>
+        </tr>
+    </table>
+
+    <script>
+        function gerarString(event) {
+            event.preventDefault();
+
+            var caractere = document.getElementById("caractere").value;
+            var quantidade = parseInt(document.getElementById("quantidade").value);
+
+            var tabelaString = document.getElementById("tabelaString");
+            tabelaString.innerHTML = "<tr><th>Caracter</th></tr>";
+
+            var row = tabelaString.insertRow(1);
+            for (var i = 0; i < quantidade; i++) {
+                var cell = row.insertCell(i);
+                cell.innerHTML = caractere;
+            }
+        }
+    </script>
+</body>
+</html>

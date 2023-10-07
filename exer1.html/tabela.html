@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: purple;
+            color: rgb(222, 200, 235);
+        }
+
+        td.black {
+            background-color: black;
+            color: rgb(255, 255, 255);
+        }
+        
+    body {
+        background-color: #e5e1f7;  /* Roxinho claro para o fundo do projeto */
+    }
+
+    /* Restante do seu estilo... */
+
+
+    </style>
+</head>
+<body>
+    <form>
+        <label for="inputString">digite uma string:</label>
+        <input type="text" id="inputString">
+        <button type="button" onclick="exibirString()">exibir</button>
+    </form>
+
+    <h2>exibição em linha:</h2>
+    <table id="tableSingleRow">
+        <tr>
+            <th>caracter:</th>
+        </tr>
+    </table>
+
+    <h2>exibição em coluna:</h2>
+    <table id="tableMultiRow">
+        <tr>
+            <th>caracter:</th>
+        </tr>
+    </table>
+ 
+    <script>
+        function exibirString() {
+            var input = document.getElementById("inputString").value;
+            var tableSingleRow = document.getElementById("tableSingleRow");
+            var tableMultiRow = document.getElementById("tableMultiRow");
+    
+            // Limpar tabelas
+            tableSingleRow.innerHTML = "<tr><th>caracter</th></tr>";
+            tableMultiRow.innerHTML = "<tr><th>caracter</th></tr>";
+    
+            // Exibir caracter a caracter nas tabelas
+            for (var i = 0; i < input.length; i++) {
+                var character = input.charAt(i);
+    
+                // Tabela de uma única linha (preto)
+                var rowSingleRow = tableSingleRow.rows[0];
+                var cellSingleRow = rowSingleRow.insertCell(i + 1);
+                cellSingleRow.className = "black";
+                cellSingleRow.style.backgroundColor = "rgb(222, 200, 235);"
+                cellSingleRow.innerHTML = character;
+    
+                // Tabela com uma coluna por linha (roxo)
+                var rowMultiRow = tableMultiRow.insertRow(i + 1);
+                var cellMultiRow = rowMultiRow.insertCell(0);
+                cellMultiRow.style.backgroundColor = "purple";
+                cellMultiRow.innerHTML = character;
+            }
+        }
+    </script>
+    
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #f3c734ef;  /* Fundo amarelinho claro */
+        }
+
+        .mensagem {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.959);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form onsubmit="verificarPalindromo(event)">
+        <label for="inputString">digite uma palavra:</label>
+        <input type="text" id="inputString" required><br><br>
+
+        <button type="submit">verificar palíndromo</button>
+    </form>
+
+    <div id="resultado" class="mensagem"></div>
+
+    <script>
+        function verificarPalindromo(event) {
+            event.preventDefault();
+
+            var inputString = document.getElementById("inputString").value;
+            var stringSemEspacos = inputString.replace(/\s+/g, '').toLowerCase();
+            var stringReversa = stringSemEspacos.split('').reverse().join('');
+
+            var resultadoDiv = document.getElementById("resultado");
+
+            if (stringSemEspacos === stringReversa) {
+                resultadoDiv.innerText = "a string é um palíndromo!";
+            } else {
+                resultadoDiv.innerText = "a string não é um palíndromo.";
+            }
+        }
+    </script>
+</body>
+</html>

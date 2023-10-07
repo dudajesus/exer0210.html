@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+       
+       body {
+            background-color: #d5f6f6;  /* Fundo verde água claro */
+        }
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: rgba(4, 97, 77, 0.911);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <form onsubmit="contarCaracteres(event)">
+        <label for="inputString">digite uma string:</label>
+        <input type="text" id="inputString" required><br><br>
+
+        <button type="submit">contar caracteres</button>
+    </form>
+
+    <h2>contagem de caracteres:</h2>
+    <table id="tabelaContagem">
+        <tr>
+            <th>categoria:</th>
+            <th>quantidade:</th>
+        </tr>
+        <tr>
+            <td>vogais:</td>
+            <td id="vogais"></td>
+        </tr>
+        <tr>
+            <td>consoantes:</td>
+            <td id="consoantes"></td>
+        </tr>
+        <tr>
+            <td>dígitos:</td>
+            <td id="digitos"></td>
+        </tr>
+        <tr>
+            <td>outros:</td>
+            <td id="outros"></td>
+        </tr>
+    </table>
+
+    <script>
+        function contarCaracteres(event) {
+            event.preventDefault();
+
+            var inputString = document.getElementById("inputString").value;
+            var vogais = inputString.match(/[aeiouAEIOU]/g);
+            var consoantes = inputString.match(/[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]/g);
+            var digitos = inputString.match(/[0-9]/g);
+            var outros = inputString.match(/[^aeiouAEIOUbcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ0-9]/g);
+
+            document.getElementById("vogais").innerText = vogais ? vogais.length : 0;
+            document.getElementById("consoantes").innerText = consoantes ? consoantes.length : 0;
+            document.getElementById("digitos").innerText = digitos ? digitos.length : 0;
+            document.getElementById("outros").innerText = outros ? outros.length : 0;
+        }
+    </script>
+</body>
+</html>
